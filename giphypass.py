@@ -1,4 +1,4 @@
-import argparse, safygiphy
+import argparse, safygiphy, sys
 from colorama import init, Fore
 init()
 parser = argparse.ArgumentParser()
@@ -7,6 +7,9 @@ args = parser.parse_args()
 g= safygiphy.Giphy()
 
 r = g.random(tag=args.keyword)
+if not r[u'data']:
+        print "No data found, try another keyword"
+        sys.exit(1)
 t = r[u'data'][u'url']
 print (Fore.BLUE + "URL Link:")
 print (Fore.WHITE + t)
